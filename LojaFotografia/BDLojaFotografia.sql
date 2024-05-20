@@ -13,7 +13,7 @@ CREATE TABLE Endereco (
 CREATE TABLE Cliente (
     Id BIGINT,
     Nome VARCHAR(100),
-    CodEnd INT,
+    CodEnd BIGINT,
     TelefoneResidencial VARCHAR(15),
     TelefoneComercial VARCHAR(15),
     Celular VARCHAR(15),
@@ -26,7 +26,7 @@ CREATE TABLE Cliente (
     Responsavel VARCHAR(100),
     Tipo CHAR(1), 
     CONSTRAINT pkCliente Primary Key(Id),
-    FOREIGN KEY (Id) REFERENCES Endereco(CodEnd)
+    FOREIGN KEY (CodEnd) REFERENCES Endereco(CodEnd)
 );
 
 CREATE TABLE Funcionario (
