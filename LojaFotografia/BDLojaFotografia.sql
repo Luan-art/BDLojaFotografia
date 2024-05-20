@@ -7,7 +7,7 @@ CREATE TABLE Endereco (
     Bairro VARCHAR(100),
     Rua VARCHAR(100),
     Numero VARCHAR(10),
-	CONSTRAINT pkEndereco Primary Key(CodEnd)
+    CONSTRAINT pkEndereco Primary Key(CodEnd)
 );
 
 CREATE TABLE Cliente (
@@ -25,7 +25,7 @@ CREATE TABLE Cliente (
     InscEstadual VARCHAR(20)UNIQUE,
     Responsavel VARCHAR(100),
     Tipo CHAR(1), 
-	CONSTRAINT pkCliente Primary Key(Id),
+    CONSTRAINT pkCliente Primary Key(Id),
     FOREIGN KEY (Id) REFERENCES Endereco(CodEnd)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE Funcionario (
     Contato VARCHAR(100),
     Funcao VARCHAR(50),
     Departamento VARCHAR(50),
-	CONSTRAINT pkFuncionario Primary Key(Id),
+    CONSTRAINT pkFuncionario Primary Key(Id),
     FOREIGN KEY (CodEnd) REFERENCES Endereco(CodEnd)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE Produto (
     QuantidadeEstoque INT,
     QuantidadeMinima INT,
     Tipo VARCHAR(50),
-	CONSTRAINT pkProduto Primary Key(Id)
+    CONSTRAINT pkProduto Primary Key(Id)
 );
 
 CREATE TABLE Venda (
@@ -61,7 +61,7 @@ CREATE TABLE Venda (
     IDFuncionario BIGINT,
     ValorDaVenda DECIMAL(10, 2),
     CondicaoDeVenda VARCHAR(50),
-	CONSTRAINT pkVenda PRIMARY KEY (Numero, DataVenda),
+    CONSTRAINT pkVenda PRIMARY KEY (Numero, DataVenda),
     FOREIGN KEY (IDCliente) REFERENCES Cliente(Id),
     FOREIGN KEY (IDFuncionario) REFERENCES Funcionario(Id)
 );
@@ -89,31 +89,31 @@ CREATE TABLE FuncionarioVenda (
 );
 
 INSERT INTO Endereco (CodEnd, Cep, Uf, Cidade, Bairro, Rua, Numero) VALUES
-(1, '12345-678', 'SP', 'S„o Paulo', 'Centro', 'Rua A', '100'),
+(1, '12345-678', 'SP', 'S√£o Paulo', 'Centro', 'Rua A', '100'),
 (2, '23456-789', 'RJ', 'Rio de Janeiro', 'Copacabana', 'Rua B', '200');
 
 INSERT INTO Cliente (Id, Nome, CodEnd, TelefoneResidencial, TelefoneComercial, Celular, CPF, RG, DataNascimento, Sexo, CNPJ, InscEstadual, Responsavel, Tipo) VALUES
-(1, 'Jo„o Silva', 1, '1111-1111', '2222-2222', '9999-9999', '123.456.789-00', 'MG-12.345.678', '1980-01-01', 'M', NULL, NULL, NULL, 'F'),
+(1, 'Jo√£o Silva', 1, '1111-1111', '2222-2222', '9999-9999', '123.456.789-00', 'MG-12.345.678', '1980-01-01', 'M', NULL, NULL, NULL, 'F'),
 (2, 'Empresa X', 2, '3333-3333', '4444-4444', '8888-8888', NULL, NULL, NULL, NULL, '12.345.678/0001-90', 'ISENTO', 'Maria Souza', 'J');
 
 INSERT INTO Funcionario (Id, Nome, CodEnd, TelefoneResidencial, TelefoneComercial, Celular, Contato, Funcao, Departamento) VALUES
 (1, 'Carlos Almeida', 1, '5555-5555', '6666-6666', '7777-7777', 'carlos@empresa.com', 'Vendedor', 'Vendas'),
-(2, 'Ana Costa', 2, '7777-7777', '8888-8888', '9999-9999', 'ana@empresa.com', 'Gerente', 'AdministraÁ„o');
+(2, 'Ana Costa', 2, '7777-7777', '8888-8888', '9999-9999', 'ana@empresa.com', 'Gerente', 'Administra√ß√£o');
 
 INSERT INTO Produto (Id, Descricao, PrecoDeCusto, PrecoDeVenda, QuantidadeEstoque, QuantidadeMinima, Tipo) VALUES
-(1, 'C‚mera Digital', 500.00, 700.00, 50, 5, 'EletrÙnicos'),
-(2, 'Lente 50mm', 200.00, 300.00, 30, 3, 'AcessÛrios');
+(1, 'C√¢mera Digital', 500.00, 700.00, 50, 5, 'Eletr√¥nicos'),
+(2, 'Lente 50mm', 200.00, 300.00, 30, 3, 'Acess√≥rios');
 
 INSERT INTO Venda (Numero, DataVenda, IDCliente, IDFuncionario, ValorDaVenda, CondicaoDeVenda) VALUES
-(1, '2024-05-19', 1, 1, 1400.00, 'Cart„o de CrÈdito'),
+(1, '2024-05-19', 1, 1, 1400.00, 'Cart√£o de Cr√©dito'),
 (2, '2024-05-20', 2, 2, 300.00, 'Dinheiro');
 
 INSERT INTO ItensDaVenda (IdProduto, NumeroVenda, DataItemVenda, Descricao, Quantidade, PrecoUnitario) VALUES
-(1, 1, '2024-05-19', 'C‚mera Digital', 2, 700.00),
+(1, 1, '2024-05-19', 'C√¢mera Digital', 2, 700.00),
 (2, 2, '2024-05-20', 'Lente 50mm', 1, 300.00);
 
 INSERT INTO FuncionarioVenda (Numero, DataFV, IdFuncionario, ValorDaVenda, CondicaoDeVenda) VALUES
-(1, '2024-05-19', 1, 1400.00, 'Cart„o de CrÈdito'),
+(1, '2024-05-19', 1, 1400.00, 'Cart√£o de Cr√©dito'),
 (2, '2024-05-20', 2, 300.00, 'Dinheiro');
 
 SELECT * FROM Cliente;
